@@ -8,8 +8,7 @@ export default class Board extends Component {
     }
 
     handleClick(i) {
-        //const squares = this.state.squares.slice(); // to copy the squares array instead of mutating the existing array
-        const squares = [...this.state.squares];
+        const squares = [...this.state.squares]; // to copy the squares array instead of mutating the existing array
         squares[i] = this.state.xIsNext ? 'X' : 'O';
         this.setState({
             squares: squares,
@@ -22,10 +21,42 @@ export default class Board extends Component {
                    value={this.state.squares[i]}
                    onClick={() => this.handleClick(i)} />
     }
-    
+
+    calculateWinner(squares) {
+        const lines = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ];
+
+        for (let i = 0; i < lines.length; i++) {
+            const [a, b, c] = lines[i];
+            console.log(lines[i]);
+
+            if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+                return squares[a];
+            }
+        }
+        return null;
+    }
+     
     render() {
-        const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-        
+        const winner = this.calculateWinner(this.state.squares);
+        let status;
+
+        if (winner) {
+            status = 'Winner is ' + winner;
+          } else {
+            status = 'Next player is ' + (this.state.xIsNext ? 'X' : 'O');
+          }
+
+        console.log(winner);
+
         return (
             <div>
                 <div className='status'>{ status }</div>
