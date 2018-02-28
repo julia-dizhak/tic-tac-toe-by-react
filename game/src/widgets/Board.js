@@ -9,6 +9,12 @@ export default class Board extends Component {
 
     handleClick(i) {
         const squares = [...this.state.squares]; // to copy the squares array instead of mutating the existing array
+        
+        // ignore the click if someone has already won the game or if a square is already filled
+        if (this.calculateWinner(squares) || squares[i]) {
+            return;
+        }
+
         squares[i] = this.state.xIsNext ? 'X' : 'O';
         this.setState({
             squares: squares,
@@ -36,8 +42,7 @@ export default class Board extends Component {
 
         for (let i = 0; i < lines.length; i++) {
             const [a, b, c] = lines[i];
-            console.log(lines[i]);
-
+        
             if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
                 return squares[a];
             }
@@ -54,8 +59,6 @@ export default class Board extends Component {
           } else {
             status = 'Next player is ' + (this.state.xIsNext ? 'X' : 'O');
           }
-
-        console.log(winner);
 
         return (
             <div>

@@ -1,6 +1,8 @@
 # Tic tac toe game 
 build by React
 
+inspired from [Reactjs tutorial](https://reactjs.org/tutorial/tutorial.html)
+
 ## Setting up the project
 
 ```yarn add create-react-app```
@@ -23,9 +25,9 @@ yarn start
 ### Getting started
 In particular, we have three components:
 ```
-Square
-Board
-Game
+* Square
+* Board
+* Game
 ```
 The Square component renders a single ```<button>```, the Board renders 9 squares, and the Game component renders a board with some placeholders that we’ll fill in later. None of the components are interactive at this point
 
