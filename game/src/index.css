@@ -54,3 +54,8 @@ body {
     width: 980px;
     margin: 0 auto;
   }
+
+  .moves li {
+    margin: 0 0 2px 0;
+    padding: 4px;
+  }
